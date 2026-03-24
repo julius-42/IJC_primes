@@ -9,20 +9,20 @@ TARGETS = primes primes-i
 
 all: $(TARGETS)
 
-primes: primes.o #error.o
+primes: primes.o
 	$(CC) $(CFLAGS) -o $@ $^ -lm
 
-primes-i: primes-i.o #error.o
+primes-i: primes-i.o
 	$(CC) $(CFLAGS) -DUSE_INLINE -o $@ $^ -lm
 
-primes.o: primes.c bitarray.h #error.h
+primes.o: primes.c bitarray.h
 	$(CC) $(CFLAGS) -c primes.c -o $@
 
-primes-i.o: primes.c bitarray.h #error.h
+primes-i.o: primes.c bitarray.h
 	$(CC) $(CFLAGS) -DUSE_INLINE -c primes.c -o $@
 
-# error.o: error.c error.h
-# 	$(CC) $(CFLAGS) -c error.c -o $@
+error.o: error.c error.h
+	$(CC) $(CFLAGS) -c error.c -o $@
 
 run: $(TARGETS)
 	@echo "--- Spouštím primes (makra) ---"

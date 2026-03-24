@@ -1,8 +1,7 @@
 /*
-eratosthenes.c
+primes.c
 Autor: Julius Kundrat FIT
-Prelozene: gcc -O2 -g -std=c11 -pedantic -Wall -Wextra primes.c -o primes -lm
-           valgrind --leak-check=full ./main
+Prelozene: gcc 13.3
 */
 
 #include "bitarray.h"
@@ -15,7 +14,7 @@ void Eratosthenes(bitarray_t pole){
     bitarray_fill(pole, 1);
     bitarray_setbit(pole,0,0);
 
-    for(size_t i = 2; i < sqrt(pole[0]); i++){
+    for(size_t i = 2; i < sqrt(pole[0])+1; i++){
 
         if(bitarray_getbit(pole,i) == 1){
 

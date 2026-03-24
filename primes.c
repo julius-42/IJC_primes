@@ -7,18 +7,22 @@ Prelozene: gcc 13.3
 #include "bitarray.h"
 #include <math.h>
 #include <time.h>
-#define SIZE 4440000
+#define SIZE 444000000
 
 void Eratosthenes(bitarray_t pole){
 
     bitarray_fill(pole, 1);
     bitarray_setbit(pole,0,0);
 
-    for(size_t i = 2; i < sqrt(pole[0])+1; i++){
+    for (size_t j = 4; j < pole[0]; j += 2) {
+        bitarray_setbit(pole, j, 0);
+    }
 
-        if(bitarray_getbit(pole,i) == 1){
+    for(size_t i = 3; i < sqrt(pole[0])+1; i += 2){
 
-            for(size_t j = i+i; j < pole[0]; j+=i){
+        if(bitarray_getbit(pole,i)){
+
+            for(size_t j = i*i; j < pole[0]; j += 2*i){
                 bitarray_setbit(pole,j,0);
             }
         }

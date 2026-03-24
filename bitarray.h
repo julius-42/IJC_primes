@@ -29,6 +29,22 @@ typedef unsigned long *bitarray_t;
 #define bitarray_free(name) free((name))
 
 
+// testing print functions
+#define PRINT_BIN(val) do { \
+    for (int i = (sizeof(unsigned long) * 8) - 1; i >= 0; i--) { \
+        putchar(((val) & (1UL << i)) ? '1' : '0'); \
+    } \
+    putchar('\n'); \
+} while(0)
+
+
+#define bitarray_print(name) \
+    for(unsigned long i = 1; i < calc_uls((name)[0]); i++){ \
+        printf("ul %lu: ", i); \
+        PRINT_BIN((name)[i]); \
+    }
+
+
 // Macros used as inline functions too
 #ifndef USE_INLINE
 
@@ -43,21 +59,6 @@ typedef unsigned long *bitarray_t;
             (name)[i] = fill; \
         } \
     }while(0) \
-
-
-#define PRINT_BIN(val) do { \
-    for (int i = (sizeof(unsigned long) * 8) - 1; i >= 0; i--) { \
-        putchar(((val) & (1UL << i)) ? '1' : '0'); \
-    } \
-    putchar('\n'); \
-} while(0)
-
-
-#define bitarray_print(name) \
-    for(unsigned long i = 1; i < calc_uls((name)[0]); i++){ \
-        printf("ul %lu: ", i); \
-        PRINT_BIN((name)[i]); \
-    }
 
 
 #define bitarray_setbit(name, idx, val) \
@@ -87,20 +88,6 @@ inline void bitarray_fill(bitarray_t name, int val){
     unsigned long fill = val ? ~0UL : 0UL;
     for(unsigned long i = 1; i < calc_uls(name[0]); i++){
         name[i] = fill;
-    }
-}
-
-inline void PRINT_BIN(unsigned long val){
-    for (int i = (sizeof(unsigned long) * 8) - 1; i >= 0; i--) {
-        putchar((val & (1UL << i)) ? '1' : '0');
-    }
-    putchar('\n');
-}
-
-inline void bitarray_print(bitarray_t name){
-    for(unsigned long i = 1; i < calc_uls(name[0]); i++){
-        printf("ul %lu: ", i);
-        PRINT_BIN(name[i]);
     }
 }
 

@@ -5,6 +5,7 @@ Prelozene: gcc 13.3
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "errors.h"
 
 // Prints a warning message using fmt format

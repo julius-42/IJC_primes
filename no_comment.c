@@ -74,8 +74,7 @@ void remove_comments(FILE* file){
 
         // Inside a single line comment - skips everything until the next newline
         case SINGLE_COMMENT:
-            if (c == '\n') state = CODE;
-            putchar('\n');
+            if (c == '\n'){ state = CODE; putchar('\n'); }
             break;
 
         // Inside a multi line comment - skips everything and checks for *

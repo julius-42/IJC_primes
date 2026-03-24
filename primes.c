@@ -19,13 +19,13 @@ int main(){
 
     // Prints the last 10 prime numbers
     int count = 0;
-    for(unsigned long i = SIZE-1; count < 10; i--){
+    for(unsigned long i = SIZE-1; (count < 10 && i > 0); i--){
         if(bitarray_getbit(arr, i) == 1){
             printf("%ld\n",i);
             count++;
         }
     }
-
+    
     bitarray_free(arr); // Frees the allocated bitarray
     fprintf(stderr, "Time=%.3g\n", (double)(clock()-start)/CLOCKS_PER_SEC); // Prints the final time
 

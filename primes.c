@@ -4,37 +4,20 @@ Autor: Julius Kundrat FIT
 Prelozene: gcc 13.3
 */
 
-#include "bitarray.h"
 #include <math.h>
 #include <time.h>
+#include "bitarray.h"
+#include "eratosthenes.h"
+
 #define SIZE 444000000
-
-void Eratosthenes(bitarray_t pole){
-
-    bitarray_fill(pole, 1);
-    bitarray_setbit(pole,0,0);
-
-    for (size_t j = 4; j < pole[0]; j += 2) {
-        bitarray_setbit(pole, j, 0);
-    }
-
-    for(size_t i = 3; i < sqrt(pole[0])+1; i += 2){
-
-        if(bitarray_getbit(pole,i)){
-
-            for(size_t j = i*i; j < pole[0]; j += 2*i){
-                bitarray_setbit(pole,j,0);
-            }
-        }
-    }
-}
 
 int main(){
 
-    clock_t start = clock();
-    bitarray_alloc(arr,SIZE);
-    Eratosthenes(arr);
+    clock_t start = clock(); // Starts the clock to measure Eratosthenes sieve efficiency
+    bitarray_alloc(arr,SIZE); // Allocates a bitarray of SIZE
+    Eratosthenes(arr); // Runs the Eratosthenes sieve
 
+    // Prints the last 10 prime numbers
     int count = 0;
     for(unsigned long i = SIZE-1; count < 10; i--){
         if(bitarray_getbit(arr, i) == 1){
@@ -43,8 +26,8 @@ int main(){
         }
     }
 
-    bitarray_free(arr);
-    fprintf(stderr, "Time=%.3g\n", (double)(clock()-start)/CLOCKS_PER_SEC);
+    bitarray_free(arr); // Frees the allocated bitarray
+    fprintf(stderr, "Time=%.3g\n", (double)(clock()-start)/CLOCKS_PER_SEC); // Prints the final time
 
     return 0;
 }

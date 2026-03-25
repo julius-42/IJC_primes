@@ -1,7 +1,9 @@
 /*
 primes.c
+Riešenie IJC-DU1, príklad a), 25.3.2026
 Autor: Julius Kundrat FIT
-Prelozene: gcc 13.3
+Preložené: gcc 13.3
+Creates a dynamic bitarray and calls Eratosthenes() with it and prints last 10 prime numbers from the BA
 */
 
 #include <math.h>

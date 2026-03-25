@@ -1,7 +1,8 @@
 /*
 no_comment.c
+Riešenie IJC-DU1, príklad b), 25.3.2026
 Autor: Julius Kundrat FIT
-Prelozene: gcc 13.3
+Preložené: gcc 13.3
 */
 
 #include <stdio.h>
@@ -14,9 +15,10 @@ typedef enum {
     SINGLE_COMMENT, MULTI_COMMENT, MULTI_COMMENT_END
 } State;
 
-/* Uses Finite State Machine to remove single-line and multi-line comments in C code
- * Prints the new commentless code into the stdout
- */
+/* 
+Uses Finite State Machine to remove single-line and multi-line comments in C code
+Prints the new commentless code into the stdout
+*/
 void remove_comments(FILE* file){
     int c;
     State state = CODE;

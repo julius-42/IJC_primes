@@ -1,3 +1,11 @@
+/*
+bitarray.h
+Riešenie IJC-DU1, príklad a), 25.3.2026
+Autor: Julius Kundrat FIT
+Preložené: gcc 13.3
+*/
+
+
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -27,25 +35,8 @@ typedef unsigned long *bitarray_t;
 // Gets the needed amount of unsigned longs to store 'bits' amount of bits + UL for size of bitarray
 #define calc_uls(bits) (((bits) / ULONG_BIT) + 1 + ((bits) % ULONG_BIT != 0))
 
+
 // --- Macros used always as macros ---
-
-
-// remove afterwards
-#define bitarray_print(name) \
-    for(unsigned long i = 1; i < calc_uls((name)[0]); i++){ \
-        printf("ul %3lu: ", i); \
-        PRINT_BIN((name)[i]); \
-    }
-
-#define PRINT_BIN(val) do { \
-    unsigned long _v = (val); \
-    for (int _i = (sizeof(unsigned long) * 8) - 1; _i >= 0; _i--) { \
-        putchar((_v & (1UL << _i)) ? '1' : '0'); \
-    } \
-    putchar('\n'); \
-} while(0)
-
-
 
 // Creates a static bitarray of size 'size'
 #define bitarray_create(name, size) \
@@ -66,9 +57,9 @@ typedef unsigned long *bitarray_t;
 #define bitarray_free(name) free((name))
 
 
+
 // --- Macros used as inline functions too ---
 #ifndef USE_INLINE
-
 
 // Gets the size of the bitarray
 #define bitarray_size(name) (name)[0]
